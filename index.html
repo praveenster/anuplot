@@ -8,6 +8,35 @@
   <title>anuplot</title>
   <meta name="description" content="">
   <meta name="author" content="">
+  <meta name="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-console/jquery.console.js"></script>
+  <link rel="stylesheet" href="css/console.css">
+  <script type="text/javascript">
+    $(document).ready(function(){
+       var console1 = $('<div class="console1">');
+       $('[name="console"]').append(console1);
+       var controller1 = console1.console({
+         promptLabel: 'anu> ',
+         commandValidate:function(line){
+           if (line == "") return false;
+           else return true;
+         },
+         commandHandle:function(line){
+             return [{msg:"[exec] " + line,
+                      className:"jquery-console-message-value"},
+                     {msg:"[done]",
+                      className:"jquery-console-message-type"}]
+         },
+         autofocus:true,
+         animateScroll:true,
+         promptHistory:true,
+         charInsertTrigger:function(keycode,line){
+            return true;
+         }
+       });
+     });
+  </script>
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -35,8 +64,7 @@
     <div class="row">
       plot
     </div>
-    <div class="row">
-      console
+    <div class="row" name="console">
     </div>
   </div>
 
